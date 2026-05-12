@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="logo">24dp</dimen>
-    <dimen name="toolbar">8dp</dimen>
+    <dimen name="logo">24sp</dimen>
+    <dimen name="toolbar">8sp</dimen>
 </resources>
