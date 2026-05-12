@@ -19,6 +19,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // pentru PhotoView
+        maven(url = "https://jitpack.io")
     }
 }
 

@@ -20,6 +20,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -40,6 +44,25 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+
+    // Listare imagini în grid
+    implementation(libs.recyclerview)
+
+    // Swipe între poze în fullscreen
+    implementation(libs.viewpager2)
+
+    // Navigation component (single-activity, multiple fragments)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+
+    // Glide – încărcare imagini + caching
+    implementation(libs.glide)
+    implementation(libs.fragment)
+    annotationProcessor(libs.glide.compiler)
+
+    // PhotoView – pinch-to-zoom pe imagini
+    implementation(libs.photoview)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
