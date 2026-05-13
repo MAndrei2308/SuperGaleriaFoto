@@ -1,7 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.SuperGaleriaFoto" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+    <!-- Base application theme (DARK mapping) -->
+    <style name="Base.Theme.SuperGaleriaFoto"
+        parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- ce culori sa foloseasca în mod DARK -->
+        <item name="colorPrimary">@color/sgf_dark_primary</item>
+        <item name="colorOnPrimary">@color/sgf_dark_on_primary</item>
+
+        <item name="colorSurface">@color/sgf_dark_surface</item>
+        <item name="colorOnSurface">@color/sgf_dark_on_surface</item>
+
+        <item name="colorSecondary">@color/sgf_dark_secondary</item>
+        <item name="colorOnSecondary">@color/sgf_dark_on_secondary</item>
     </style>
+
 </resources>

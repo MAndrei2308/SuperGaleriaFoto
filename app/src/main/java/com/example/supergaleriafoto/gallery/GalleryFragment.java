@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.PermissionRequest;
+import android.widget.Toast;
 
 import com.example.supergaleriafoto.R;
 import com.example.supergaleriafoto.databinding.FragmentGalleryBinding;
@@ -30,9 +32,8 @@ public class GalleryFragment extends Fragment {
 
     private static final int REQUEST_READ_IMAGES = 1001;
     private FragmentGalleryBinding binding;
-
-    // Grid cu 3 coloane
     private static final int SPAN_COUNT = 3;
+    private PhotoGridAdapter photoGridAdapter;
 
 
     @Nullable
@@ -58,7 +59,13 @@ public class GalleryFragment extends Fragment {
     }
 
     private void setupRecyclerView() {
-        // TODO: logica recycler view
+        photoGridAdapter = new PhotoGridAdapter();
+
+        binding.recyclerPhotos.setHasFixedSize(true);
+        binding.recyclerPhotos.setLayoutManager(
+                new GridLayoutManager(requireContext(), SPAN_COUNT)
+        );
+        binding.recyclerPhotos.setAdapter(photoGridAdapter);
     }
 
     private void requestReadImagesPermission() {
@@ -114,6 +121,11 @@ public class GalleryFragment extends Fragment {
                     }
                 }
             }
+
+            requireActivity().runOnUiThread(() -> {
+                photoGridAdapter.submitList(photoList);
+                Log.d("GalleryFragment", "Loaded " + photoList.size() + " photos");
+            });
         }).start();
     }
 
@@ -139,5 +151,17 @@ public class GalleryFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        if(requestCode == REQUEST_READ_IMAGES) {
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                loadPhotos();
+            } else {
+                Toast toast = Toast.makeText(this.getContext(), "NUUUUU. ACEPTAAAAAA", Toast.LENGTH_LONG);
+                toast.show();
+            }
+        }
+    }
 }

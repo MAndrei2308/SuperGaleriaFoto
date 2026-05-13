@@ -58,6 +58,7 @@ dependencies {
     // Glide – încărcare imagini + caching
     implementation(libs.glide)
     implementation(libs.fragment)
+    implementation(libs.cardview)
     annotationProcessor(libs.glide.compiler)
 
     // PhotoView – pinch-to-zoom pe imagini
